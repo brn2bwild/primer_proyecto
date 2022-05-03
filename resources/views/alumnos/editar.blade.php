@@ -19,7 +19,10 @@
   @error('matricula')
     <p style="color: red">{{$message}}</p>
   @enderror<br><br>
-  <button type="submit">Guardar</button>
+  @if ($alumno->rol == 'admin')    
+    <button type="submit">Guardar</button>
+    <h2>este usuario tiene el rol alumno</h2>
+  @endif
   @foreach ($alumno->calificaciones  as $calificacion)
       <h1>{{$calificacion->materia}}</h1>
       <h1>{{$calificacion->calificacion}}</h1>

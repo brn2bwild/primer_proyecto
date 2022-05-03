@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('apellido_paterno');
             $table->string('apellido_materno');
             $table->string('matricula');
+            $table->string('rol')->nullable();
             $table->timestamps();
         });
     }

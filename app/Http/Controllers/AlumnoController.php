@@ -71,7 +71,11 @@ class AlumnoController extends Controller
      */
     public function edit(Alumno $alumno)
     {
-        return view('alumnos.editar', compact('alumno'));
+        if($alumno->rol == 'admin'){
+          return view('alumnos.editar', compact('alumno'));
+        } else if($alumno->rol == 'alumno'){
+          return view('alumnos.mensaje');
+        }
     }
 
     /**
