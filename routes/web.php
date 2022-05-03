@@ -19,3 +19,11 @@ Route::get('/', function () {
 });
 
 Route::resource('alumnos', AlumnoController::class);
+
+Route::get('/administrativos', function(){
+  return view('administrativos');
+})->name('administrativos');
+
+Route::get('/maestros', function(){
+  return view('maestros');
+})->name('maestros');

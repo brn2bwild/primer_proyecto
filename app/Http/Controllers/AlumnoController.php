@@ -25,7 +25,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        //
+      return view('alumnos.crear');
     }
 
     /**
@@ -36,7 +36,20 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      // dd($request->all());
+      $request->validate([
+        'nombre' => 'required',
+        'apellido_paterno' => 'required',
+        'apellido_materno' => 'required',
+        'matricula' => 'required',
+      ],[
+        'nombre.required' => 'Debes introducir un nombre',
+        'apellido_paterno.required' => 'Debes introducir un nombre',
+        'apellido_materno.required' => 'Debes introducir un nombre',
+        'matricula.required' => 'Debes introducir un nombre',
+      ]);
+        Alumno::create($request->all());
+        return redirect()->route('alumnos.index');
     }
 
     /**
@@ -58,7 +71,7 @@ class AlumnoController extends Controller
      */
     public function edit(Alumno $alumno)
     {
-        //
+        return view('alumnos.editar', compact('alumno'));
     }
 
     /**
@@ -70,7 +83,19 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, Alumno $alumno)
     {
-        //
+      $request->validate([
+        'nombre' => 'required',
+        'apellido_paterno' => 'required',
+        'apellido_materno' => 'required',
+        'matricula' => 'required',
+      ],[
+        'nombre.required' => 'Debes introducir un nombre',
+        'apellido_paterno.required' => 'Debes introducir un nombre',
+        'apellido_materno.required' => 'Debes introducir un nombre',
+        'matricula.required' => 'Debes introducir un nombre',
+      ]);
+      $alumno->update($request->all());
+      return redirect()->route('alumnos.index');
     }
 
     /**
@@ -81,6 +106,7 @@ class AlumnoController extends Controller
      */
     public function destroy(Alumno $alumno)
     {
-        //
+        $alumno->delete();
+        return redirect()->route('alumnos.index');
     }
 }
